@@ -25,13 +25,13 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
         configureSpringMvc(servletContext, rootContext);
 
-        configureSpringSecurity(servletContext, rootContext);
+//        configureSpringSecurity(servletContext, rootContext);
     }
 
     private WebApplicationContext createRootContext(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-//    rootContext.register(CoreConfig.class, SecurityConfig.class);
-        rootContext.refresh();
+//        rootContext.register(CoreConfig.class, SecurityConfig.class);
+//        rootContext.refresh();
 
         servletContext.addListener(new ContextLoaderListener(rootContext));
         servletContext.setInitParameter("defaultHtmlEscape", "true");

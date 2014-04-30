@@ -1,11 +1,17 @@
 package com.strightflow.rest.controller;
 
+import com.strightflow.core.events.CreateEvent;
+import com.strightflow.core.events.CreatedEvent;
+import com.strightflow.core.events.DeleteEvent;
+import com.strightflow.core.events.DeletedEvent;
 import com.strightflow.core.events.entity.CreateEntityEvent;
 import com.strightflow.core.events.entity.DeleteEntityEvent;
 import com.strightflow.core.events.entity.EntityCreatedEvent;
 import com.strightflow.core.events.entity.EntityDeletedEvent;
 import com.strightflow.core.services.EntityService;
+import com.strightflow.core.services.NamespaceService;
 import com.strightflow.rest.domain.Entity;
+import com.strightflow.rest.domain.Namespace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,19 +30,19 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 
 @Controller
-@RequestMapping("/aggregators/entity")
-public class EntityCommandsController {
+@RequestMapping("/aggregators/namespace")
+public class NamespaceCommandsController {
 
-    private static Logger LOG = LoggerFactory.getLogger(EntityCommandsController.class);
+    private static Logger LOG = LoggerFactory.getLogger(NamespaceCommandsController.class);
 
     @Autowired
-    private EntityService entityService;
+    private NamespaceService namespaceService;
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Entity> createEntity(@RequestBody Entity entity, UriComponentsBuilder builder) {
+    public ResponseEntity<Namespace> create(@RequestBody Namespace namespace, UriComponentsBuilder builder) {
 
-        EntityCreatedEvent entityCreated = entityService.createEntity(new CreateEntityEvent());
+        CreatedEvent createdEvent = namespaceService.create(new CreateEvent());
 
 
         HttpHeaders headers = new HttpHeaders();
@@ -45,22 +51,22 @@ public class EntityCommandsController {
 //                        .buildAndExpand(entityCreated.getId().toString()).toUri()
 //        );
 
-        Entity newEntity = null;
-        return new ResponseEntity<Entity>(newEntity, headers, HttpStatus.CREATED);
+        Namespace newNamespace = null;
+        return new ResponseEntity<Namespace>(newNamespace, headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public ResponseEntity<Entity> deleteEntity(@PathVariable String id) {
+    public ResponseEntity<Namespace> delete(@PathVariable String id) {
 
-        EntityDeletedEvent entityDeleted = entityService.deleteEntity(new DeleteEntityEvent());
+        DeletedEvent entityDeleted = namespaceService.delete(new DeleteEvent());
 
 
-        Entity entity = null;
+        Namespace namespace = null;
 //        if (entityDeleted.isDeletionCompleted()) {
 //            return new ResponseEntity<Entity>(entity, HttpStatus.OK);
 //        }
 
-        return new ResponseEntity<Entity>(entity, HttpStatus.FORBIDDEN);
+        return new ResponseEntity<Namespace>(namespace, HttpStatus.OK);
     }
 
 }
