@@ -1,15 +1,12 @@
-package com.strightflow.core.domain;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.strightflow.rest.domain;
 
 /**
  * Created by yermak on 29/4/14.
  */
-@Document
-public class Namespace {
 
-    @Id
+
+public class NamespaceInfo {
+
     private String id;
 
     private String name;
@@ -52,7 +49,7 @@ public class Namespace {
 
     @Override
     public String toString() {
-        return "Namespace{" +
+        return "NamespaceInfo{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", code='" + code + '\'' +

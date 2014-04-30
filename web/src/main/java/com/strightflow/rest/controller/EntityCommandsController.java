@@ -24,7 +24,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 
 @Controller
-@RequestMapping("/aggregators/entity")
+@RequestMapping("/rest/entity")
 public class EntityCommandsController {
 
     private static Logger LOG = LoggerFactory.getLogger(EntityCommandsController.class);
