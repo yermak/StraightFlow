@@ -9,19 +9,22 @@ import com.strightflow.core.services.NamespaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @Configuration
+@EnableMongoRepositories
 public class CoreConfig {
 
     @Bean
-    public EntityService createEntityService(EntityRepository repo) {
-        return new EntityEventHandler(repo);
+    @Autowired
+    public EntityService createEntityService(EntityRepository entityRepository) {
+        return new EntityEventHandler(entityRepository);
     }
 
     @Bean
     @Autowired
-    public NamespaceService createNamespaceService(NamespaceRepository repository) {
-        return new NamespaceEventHandler(repository);
+    public NamespaceService createNamespaceService(NamespaceRepository namespaceRepository) {
+        return new NamespaceEventHandler(namespaceRepository);
     }
 
 }

@@ -1,9 +1,6 @@
 package com.strightflow.rest.controller;
 
-import com.strightflow.core.events.CreateEvent;
-import com.strightflow.core.events.CreatedEvent;
-import com.strightflow.core.events.DeleteEvent;
-import com.strightflow.core.events.DeletedEvent;
+import com.strightflow.core.events.*;
 import com.strightflow.core.events.entity.CreateEntityEvent;
 import com.strightflow.core.events.entity.DeleteEntityEvent;
 import com.strightflow.core.events.entity.EntityCreatedEvent;
@@ -24,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yermak on 29/4/14.
@@ -54,6 +54,23 @@ public class NamespaceCommandsController {
         Namespace newNamespace = null;
         return new ResponseEntity<Namespace>(newNamespace, headers, HttpStatus.CREATED);
     }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List> list(@RequestBody Namespace namespace, UriComponentsBuilder builder) {
+
+        ReadEvent event = namespaceService.requestAll(new RequestReadEvent());
+
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(
+                builder.path("/aggregators/namespace/")
+                        .buildAndExpand().toUri()
+        );
+
+
+        return new ResponseEntity<List>(new ArrayList(), headers, HttpStatus.CREATED);
+    }
+
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseEntity<Namespace> delete(@PathVariable String id) {

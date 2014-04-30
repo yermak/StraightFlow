@@ -2,7 +2,9 @@ package com.strightflow.config;
 
 import com.mongodb.Mongo;
 import com.strightflow.core.repository.MongoNamespaceRepository;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
@@ -11,6 +13,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
  */
 @Configuration
 @EnableMongoRepositories
+@ComponentScan(basePackages="com.strightflow.core.repository")
+//@PropertySource("classpath:application.properties")
+
 public class MongoConfig extends AbstractMongoConfiguration {
 
     @Override
@@ -27,5 +32,7 @@ public class MongoConfig extends AbstractMongoConfiguration {
     protected String getMappingBasePackage() {
         return "com.strightflow.core.domain";
     }
+
+
 
 }

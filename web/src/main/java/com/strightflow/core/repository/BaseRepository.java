@@ -1,7 +1,5 @@
 package com.strightflow.core.repository;
 
-import com.strightflow.core.domain.Entity;
-
 import java.util.List;
 
 /**
@@ -10,9 +8,9 @@ import java.util.List;
 
 public interface BaseRepository<T> {
 
-    T save(T object);
+    void save(T object);
 
-    void delete(String key);
+    void delete(T object);
 
     T findById(String key);
 

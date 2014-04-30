@@ -1,5 +1,7 @@
 package com.strightflow.core.repository;
 
+import com.strightflow.config.CoreConfig;
+import com.strightflow.config.MongoConfig;
 import com.strightflow.core.domain.Namespace;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,11 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
-
+@ContextConfiguration(classes = {CoreConfig.class, MongoConfig.class})
 public class MongoNamespaceRepositoryTest {
 
 
@@ -31,7 +30,6 @@ public class MongoNamespaceRepositoryTest {
         namespace.setName("ACTIONS");
         namespace.setDescription("Tracking actions");
         repository.save(namespace);
-
 
     }
 }
