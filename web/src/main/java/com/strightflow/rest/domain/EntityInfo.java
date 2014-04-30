@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 
 @XmlRootElement
-public class Entity extends ResourceSupport implements Serializable {
+public class EntityInfo extends ResourceSupport implements Serializable {
 
     @XmlElement
     private String id;

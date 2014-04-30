@@ -1,10 +1,8 @@
 package com.strightflow.config;
 
 import com.mongodb.Mongo;
-import com.strightflow.core.repository.MongoNamespaceRepository;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 

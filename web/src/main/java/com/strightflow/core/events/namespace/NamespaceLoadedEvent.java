@@ -1,6 +1,5 @@
 package com.strightflow.core.events.namespace;
 
-import com.strightflow.core.domain.Namespace;
 import com.strightflow.core.events.ReadEvent;
 import com.strightflow.rest.domain.NamespaceInfo;
 

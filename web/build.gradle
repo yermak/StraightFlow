@@ -8,23 +8,21 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 buildscript {
-  repositories {
-    mavenCentral()
-    maven {
-      url "http://download.java.net/maven/2"
+    repositories {
+        mavenCentral()
+        maven { url "http://download.java.net/maven/2" }
+        maven { url 'http://repo.spring.io/plugins-release' }
     }
-    maven { url 'http://repo.spring.io/plugins-release' }
-  }
 
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE")
-    classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.1'
-  }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE")
+        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.1'
+    }
 }
 
 repositories {
-  mavenCentral()
-  maven { url 'http://repo.spring.io/milestone/'}
+    mavenCentral()
+    maven { url 'http://repo.spring.io/milestone/' }
 }
 
 dependencies {
@@ -33,10 +31,12 @@ dependencies {
     }
     compile("org.springframework.boot:spring-boot-starter-jetty")
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 
     compile 'org.springframework:spring-core:4.0.3.RELEASE'
     compile 'org.springframework:spring-webmvc:4.0.3.RELEASE'
     compile("org.springframework.data:spring-data-mongodb:1.4.2.RELEASE")
+
 //    compile 'org.springframework.security:spring-security-web:3.2.3.RELEASE'
 //    compile 'org.springframework.security:spring-security-core:3.2.3.RELEASE'
 //    compile 'org.springframework.security:spring-security-config:3.2.3.RELEASE'

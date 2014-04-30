@@ -5,7 +5,7 @@ import com.strightflow.core.events.entity.DeleteEntityEvent;
 import com.strightflow.core.events.entity.EntityCreatedEvent;
 import com.strightflow.core.events.entity.EntityDeletedEvent;
 import com.strightflow.core.services.EntityService;
-import com.strightflow.rest.domain.Entity;
+import com.strightflow.rest.domain.EntityInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class EntityCommandsController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Entity> createEntity(@RequestBody Entity entity, UriComponentsBuilder builder) {
+    public ResponseEntity<EntityInfo> createEntity(@RequestBody EntityInfo entity, UriComponentsBuilder builder) {
 
         EntityCreatedEvent entityCreated = entityService.createEntity(new CreateEntityEvent());
 
@@ -45,22 +45,22 @@ public class EntityCommandsController {
 //                        .buildAndExpand(entityCreated.getId().toString()).toUri()
 //        );
 
-        Entity newEntity = null;
-        return new ResponseEntity<Entity>(newEntity, headers, HttpStatus.CREATED);
+        EntityInfo newEntity = null;
+        return new ResponseEntity<EntityInfo>(newEntity, headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public ResponseEntity<Entity> deleteEntity(@PathVariable String id) {
+    public ResponseEntity<EntityInfo> deleteEntity(@PathVariable String id) {
 
         EntityDeletedEvent entityDeleted = entityService.deleteEntity(new DeleteEntityEvent());
 
 
-        Entity entity = null;
+        EntityInfo entity = null;
 //        if (entityDeleted.isDeletionCompleted()) {
 //            return new ResponseEntity<Entity>(entity, HttpStatus.OK);
 //        }
 
-        return new ResponseEntity<Entity>(entity, HttpStatus.FORBIDDEN);
+        return new ResponseEntity<EntityInfo>(entity, HttpStatus.FORBIDDEN);
     }
 
 }
