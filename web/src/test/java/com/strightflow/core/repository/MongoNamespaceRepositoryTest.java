@@ -1,6 +1,5 @@
 package com.strightflow.core.repository;
 
-import com.strightflow.config.CoreConfig;
 import com.strightflow.config.MongoConfig;
 import com.strightflow.core.domain.Namespace;
 import org.junit.Before;
@@ -11,12 +10,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {CoreConfig.class, MongoConfig.class})
+@ContextConfiguration(classes = {MongoConfig.class})
 public class MongoNamespaceRepositoryTest {
 
 
     @Autowired
-    private MongoNamespaceRepository repository;
+    private NamespaceRepository repository;
 
     @Before
     public void setUp() throws Exception {
