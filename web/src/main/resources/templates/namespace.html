@@ -3,14 +3,24 @@
 <head>
     <title th:text="${name}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script src="/jquery.dataTables.js"/>
+    <script src="/js/jquery-2.1.0.js"/>
+    <script src="/js/jquery.dataTables-1.10.0.js"/>
+    <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css"></link>
 
     <script language="JavaScript">
     $(document).ready(function() {
-        $('#table_namespace').dataTable( {
-            "bProcessing": true,
-            "sAjaxSource": '/rest/namespace'
-        } );
+    $('#table_namespace').dataTable( {
+        "ajax": {
+            "url":"/rest/namespace",
+            "dataSrc": "",
+            "type": "GET"
+        },
+        "columns": [
+            { "data": "code" },
+            { "data": "name" },
+            { "data": "description" }
+        ]
+    } );
     } );
     </script>
 </head>
@@ -25,11 +35,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>Row 1 Data 1</td>
-        <td>Row 1 Data 2</td>
-        <td>etc</td>
-    </tr>
+
     </tbody>
 </table>
 </body>

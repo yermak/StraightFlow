@@ -8,6 +8,9 @@ import com.strightflow.core.repository.NamespaceRepository;
 import com.strightflow.rest.domain.NamespaceInfo;
 import org.springframework.beans.BeanUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by yermak on 29/4/14.
  */
@@ -20,8 +23,15 @@ public class NamespaceEventHandler implements NamespaceService {
     }
 
     @Override
-    public ReadEvent requestAll(RequestReadEvent event) {
-        return null;
+    public NamespaceListedEvent requestAll(RequestReadEvent event) {
+        List<Namespace> namespaces = repository.findAll();
+        List<NamespaceInfo> namespaceInfos = new ArrayList<NamespaceInfo>();
+        for (Namespace namespace : namespaces) {
+            NamespaceInfo namespaceInfo = new NamespaceInfo();
+            BeanUtils.copyProperties(namespace, namespaceInfo);
+            namespaceInfos.add(namespaceInfo);
+        }
+        return new NamespaceListedEvent(namespaceInfos);
     }
 
     @Override
@@ -34,12 +44,12 @@ public class NamespaceEventHandler implements NamespaceService {
     }
 
     @Override
-    public CreatedEvent create(CreateEvent event) {
+    public NamespaceCreatedEvent create(CreateNamespaceEvent event) {
         return null;
     }
 
     @Override
-    public DeletedEvent delete(DeleteEvent event) {
+    public NamespaceDeletedEvent delete(DeleteNamespaceEvent event) {
         return null;
     }
 

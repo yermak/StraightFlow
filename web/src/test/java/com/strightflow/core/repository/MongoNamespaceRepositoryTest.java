@@ -26,9 +26,9 @@ public class MongoNamespaceRepositoryTest {
     @Test
     public void testCreate(){
         Namespace namespace = new Namespace();
-        namespace.setCode("ACT");
-        namespace.setName("ACTIONS");
-        namespace.setDescription("Tracking actions");
+        namespace.setCode("CRM");
+        namespace.setName("Customer Relationship Management");
+        namespace.setDescription("Track and Monitor Customer relationship");
         repository.save(namespace);
 
     }

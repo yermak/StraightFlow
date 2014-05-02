@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +34,7 @@ public class NamespaceCommandsController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<NamespaceInfo> create(@RequestBody NamespaceInfo namespace, UriComponentsBuilder builder) {
 
-        CreatedEvent createdEvent = namespaceService.create(new CreateEvent());
+        CreatedEvent createdEvent = namespaceService.create(new CreateNamespaceEvent());
 
 
         HttpHeaders headers = new HttpHeaders();
@@ -49,26 +48,25 @@ public class NamespaceCommandsController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List> list(@RequestBody NamespaceInfo namespace, UriComponentsBuilder builder) {
-
-        ReadEvent event = namespaceService.requestAll(new RequestReadEvent());
-
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(
-                builder.path("/aggregators/namespace/")
-                        .buildAndExpand().toUri()
-        );
+    public ResponseEntity<List> list() {
+        NamespaceListedEvent event = namespaceService.requestAll(new ListNamespaceEvent());
 
 
-        return new ResponseEntity<List>(new ArrayList(), headers, HttpStatus.OK);
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setLocation(
+//                builder.path("/aggregators/namespace/")
+//                        .buildAndExpand().toUri()
+//        );
+
+        System.out.println("event.getNamespaceInfos().size() = " + event.getNamespaceInfos().size());
+        return new ResponseEntity<List>(event.getNamespaceInfos(), HttpStatus.OK);
     }
 
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseEntity<NamespaceInfo> delete(@PathVariable String id) {
 
-        DeletedEvent entityDeleted = namespaceService.delete(new DeleteEvent());
+        DeletedEvent entityDeleted = namespaceService.delete(new DeleteNamespaceEvent());
 
 
         NamespaceInfo namespace = null;
