@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
  */
 @Configuration
 @EnableMongoRepositories
-@ComponentScan(basePackages="com.strightflow.core.repository")
 //@PropertySource("classpath:application.properties")
 
 public class MongoConfig extends AbstractMongoConfiguration {

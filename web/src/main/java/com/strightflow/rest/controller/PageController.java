@@ -13,10 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class PageController {
 
+    @RequestMapping("/")
+    public String index(Model model) {
+        return "index";
+    }
+
     @RequestMapping("/namespace")
     public String namespace(@RequestParam(value = "view", required = false, defaultValue = "list") String view, Model model) {
         model.addAttribute("name", view);
         return "namespace";
     }
+
 
 }

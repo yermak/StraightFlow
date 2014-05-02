@@ -13,8 +13,8 @@ import java.util.Arrays;
  */
 
 @Configuration
+@ComponentScan(basePackages = "com.strightflow" )
 @EnableAutoConfiguration
-@ComponentScan
 public class Application {
 
     public static void main(String[] args) {

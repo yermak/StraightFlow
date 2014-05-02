@@ -15,6 +15,9 @@ public class EntityFieldMapping {
     @DBRef
     private List<FieldType> fieldTypes;
 
+    private List<Comment> comments;
+
+
     public List<EntityType> getEntityTypes() {
         return entityTypes;
     }

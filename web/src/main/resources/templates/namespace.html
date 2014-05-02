@@ -3,8 +3,34 @@
 <head>
     <title th:text="${name}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="/jquery.dataTables.js"/>
+
+    <script language="JavaScript">
+    $(document).ready(function() {
+        $('#table_namespace').dataTable( {
+            "bProcessing": true,
+            "sAjaxSource": '/rest/namespace'
+        } );
+    } );
+    </script>
 </head>
 <body>
 <p th:text="'Page:' + ${name} + '!'" />
+<table id="table_namespace">
+    <thead>
+    <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Row 1 Data 1</td>
+        <td>Row 1 Data 2</td>
+        <td>etc</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

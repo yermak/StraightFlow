@@ -19,6 +19,10 @@ public class Entity {
 
     private List<FieldValue> fieldsValues;
 
+    private Integer version;
+
+    private List<Comment> comments;
+
     public String getId() {
         return id;
     }

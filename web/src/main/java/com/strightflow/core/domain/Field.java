@@ -1,7 +1,6 @@
 package com.strightflow.core.domain;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -16,8 +15,6 @@ public class Field {
     private String id;
 
     private String name;
-
-    private String description;
 
     private FieldType type;
 
@@ -37,13 +34,7 @@ public class Field {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    private List<Comment> comments;
 
     public FieldType getType() {
         return type;

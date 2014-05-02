@@ -16,7 +16,7 @@ public class EntityType {
 
     private String name;
 
-    private String description;
+    private List<Comment> comments;
 
     public String getId() {
         return id;
@@ -34,11 +34,4 @@ public class EntityType {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
