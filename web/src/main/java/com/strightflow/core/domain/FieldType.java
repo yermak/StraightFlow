@@ -11,8 +11,10 @@ public interface FieldType<T> {
     T convert(Object value);
 
     static final FieldType STRING = new FieldTypeString();
-    static final FieldType INTEGER = new FieldTypeInteger();
+    static final FieldType LONG = new FieldTypeLong();
+    static final FieldType DOUBLE = new FieldTypeDouble();
     static final FieldType DATE = new FieldTypeDate();
+    static final FieldType LIST = new FieldTypeList();
 
     static class FieldTypeString implements FieldType<String> {
 
@@ -22,11 +24,19 @@ public interface FieldType<T> {
         }
     }
 
-    static class FieldTypeInteger implements FieldType<Integer> {
+    static class FieldTypeLong implements FieldType<Long> {
 
         @Override
-        public Integer convert(Object value) {
-            return new Integer((String) value);
+        public Long convert(Object value) {
+            return new Long(value.toString());
+        }
+    }
+
+    static class FieldTypeDouble implements FieldType<Double> {
+
+        @Override
+        public Double convert(Object value) {
+            return new Double(value.toString());
         }
     }
 

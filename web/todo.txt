@@ -1,0 +1,17 @@
+Version 0.1 - Modeling and Entities
+    Entity Types,
+    Fields,
+    Scopes,
+    Entities,
+    Hierarhies.
+Version 0.2 - Filters and Queries
+    Query Language,
+    Sorting
+    Filters
+Version 0.3 - Workflow
+Version 0.4 - Calculated fields
+Version 0.5 - Dahsboards, Statisics and Charts
+Version 0.6 - Security
+Version 0.7 - Exports and API
+Version 0.8 -
+Version 0.10 - Email integration

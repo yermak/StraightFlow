@@ -14,12 +14,16 @@ public class Entity {
     @Id
     private String id;
 
-    @DBRef
     private EntityType type;
+
+    @DBRef
+    private List<Scope> scopes;
 
     private List<FieldValue> fieldsValues;
 
     private Integer version;
+
+
 
     private List<Comment> comments;
 

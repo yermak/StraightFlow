@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,8 +19,7 @@ public class FieldConfiguration {
 
     private List<Comment> comments;
 
-    @DBRef
-    private List<Field> fields;
+    private List<Field> fields = new ArrayList<Field>();
 
     public String getId() {
         return id;
@@ -38,4 +38,7 @@ public class FieldConfiguration {
     }
 
 
+    public void addField(Field field) {
+        fields.add(field);
+    }
 }
