@@ -4,8 +4,16 @@
     <title th:text="${name}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="/js/jquery-2.1.0.js"/>
+    <script src="/js/jquery-ui-1.10.4.custom.js"/>
+
     <script src="/js/jquery.dataTables-1.10.0.js"/>
-    <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css"/>
+    <script src="/js/jdataTables.jqueryui-1.10.js"/>
+
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui-1.10.4.custom.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables-1.10.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/dataTables.jqueryui.js-1.10.css"/>
+
 
     <script language="JavaScript">
     $(document).ready(function() {
@@ -17,7 +25,6 @@
         },
         "columns": [
             { "data": "name" },
-            { "type": "type" },
             { "data": "description" }
         ]
     } );
@@ -26,11 +33,10 @@
 </head>
 <body>
 <p th:text="'Page:' + ${name} + '!'" />
-<table id="table_field_configuration">
+<table id="table_field_configuration" class="display">
     <thead>
     <tr>
         <th>Name</th>
-        <th>Type</th>
         <th>Description</th>
     </tr>
     </thead>
