@@ -22,6 +22,6 @@ public class Scope {
     private List<FieldValue> fieldsValues;
 
     @DBRef
-    private Namespace namespace;
+    private List<Namespace> namespaces;
 
 }

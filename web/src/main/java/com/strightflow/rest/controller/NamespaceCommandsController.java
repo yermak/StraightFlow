@@ -1,8 +1,7 @@
 package com.strightflow.rest.controller;
 
 import com.strightflow.core.events.*;
-import com.strightflow.core.events.namespace.LoadNamespaceEvent;
-import com.strightflow.core.events.namespace.NamespaceLoadedEvent;
+import com.strightflow.core.events.namespace.*;
 import com.strightflow.core.services.NamespaceService;
 import com.strightflow.rest.domain.NamespaceInfo;
 import org.slf4j.Logger;

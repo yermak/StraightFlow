@@ -1,7 +1,6 @@
 package com.strightflow.core.domain;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -36,7 +35,6 @@ public class FieldConfiguration {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public void addField(Field field) {
         fields.add(field);

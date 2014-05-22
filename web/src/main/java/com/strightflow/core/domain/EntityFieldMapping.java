@@ -17,7 +17,6 @@ public class EntityFieldMapping {
 
     private List<Comment> comments;
 
-
     public List<EntityType> getEntityTypes() {
         return entityTypes;
     }

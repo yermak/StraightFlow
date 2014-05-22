@@ -1,30 +1,18 @@
 package com.strightflow.core.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.List;
 
 /**
  * Created by yermak on 30/4/14.
  */
-@Document
-public class Field {
 
-    @Id
-    private String id;
+public class Field {
 
     private String name;
 
     private FieldType type;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    private String description;
 
     public String getName() {
         return name;
@@ -42,5 +30,10 @@ public class Field {
 
     public void setType(FieldType type) {
         this.type = type;
+    }
+
+    public void setDescription(String description) {
+
+        this.description = description;
     }
 }

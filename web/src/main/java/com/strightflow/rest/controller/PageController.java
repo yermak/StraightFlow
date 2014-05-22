@@ -24,5 +24,13 @@ public class PageController {
         return "namespace";
     }
 
+    @RequestMapping("/field_configuration")
+    public String fieldConfiguration(@RequestParam(value = "view", required = false, defaultValue = "list") String view, Model model) {
+        model.addAttribute("name", view);
+        return "field_configuration";
+    }
+
+
+
 
 }

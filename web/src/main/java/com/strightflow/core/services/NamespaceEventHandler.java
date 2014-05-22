@@ -2,8 +2,7 @@ package com.strightflow.core.services;
 
 import com.strightflow.core.domain.Namespace;
 import com.strightflow.core.events.*;
-import com.strightflow.core.events.namespace.LoadNamespaceEvent;
-import com.strightflow.core.events.namespace.NamespaceLoadedEvent;
+import com.strightflow.core.events.namespace.*;
 import com.strightflow.core.repository.NamespaceRepository;
 import com.strightflow.rest.domain.NamespaceInfo;
 import org.springframework.beans.BeanUtils;
@@ -22,10 +21,6 @@ public class NamespaceEventHandler implements NamespaceService {
 
     @Autowired
     private NamespaceRepository repository;
-
-//    public NamespaceEventHandler(NamespaceRepository repository) {
-//        this.repository = repository;
-//    }
 
     @Override
     public NamespaceListedEvent requestAll(RequestReadEvent event) {

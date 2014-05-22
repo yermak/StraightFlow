@@ -1,5 +1,6 @@
-package com.strightflow.core.events;
+package com.strightflow.core.events.namespace;
 
+import com.strightflow.core.events.ReadEvent;
 import com.strightflow.rest.domain.NamespaceInfo;
 
 import java.util.List;

@@ -4,6 +4,7 @@ import com.strightflow.config.MongoConfig;
 import com.strightflow.core.domain.Field;
 import com.strightflow.core.domain.FieldConfiguration;
 import com.strightflow.core.domain.FieldType;
+import org.bson.types.ObjectId;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,21 +29,25 @@ public class MongoFieldConfigurationRepositoryTest {
         Field longField = new Field();
         longField.setType(FieldType.LONG);
         longField.setName("My Long Field");
+        longField.setDescription("Long Field Descr");
         configuration.addField(longField);
 
         Field doubleField = new Field();
         doubleField.setType(FieldType.DOUBLE);
         doubleField.setName("My Double Field");
+        doubleField.setDescription("Double Field Descr");
         configuration.addField(doubleField);
 
         Field dateField = new Field();
         dateField.setType(FieldType.DATE);
         dateField.setName("My Date Field");
+        dateField.setDescription("Date Field Descr");
         configuration.addField(dateField);
 
         Field stringField = new Field();
         stringField.setType(FieldType.STRING);
         stringField.setName("My String Field");
+        stringField.setDescription("String Field Descr");
         configuration.addField(stringField);
 
         repository.save(configuration);

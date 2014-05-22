@@ -1,8 +1,7 @@
 package com.strightflow.core.services;
 
 import com.strightflow.core.events.*;
-import com.strightflow.core.events.namespace.LoadNamespaceEvent;
-import com.strightflow.core.events.namespace.NamespaceLoadedEvent;
+import com.strightflow.core.events.namespace.*;
 
 /**
  * Created by yermak on 29/4/14.

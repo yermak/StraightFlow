@@ -1,7 +1,6 @@
 package com.strightflow.core.repository;
 
 import com.strightflow.core.domain.FieldConfiguration;
-import com.strightflow.core.domain.Namespace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;

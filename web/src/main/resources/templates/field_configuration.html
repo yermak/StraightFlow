@@ -9,15 +9,15 @@
 
     <script language="JavaScript">
     $(document).ready(function() {
-    $('#table_namespace').dataTable( {
+    $('#table_field_configuration').dataTable( {
         "ajax": {
-            "url":"/rest/namespace",
+            "url":"/rest/field_configuration",
             "dataSrc": "",
             "type": "GET"
         },
         "columns": [
-            { "data": "code" },
             { "data": "name" },
+            { "type": "type" },
             { "data": "description" }
         ]
     } );
@@ -26,11 +26,11 @@
 </head>
 <body>
 <p th:text="'Page:' + ${name} + '!'" />
-<table id="table_namespace">
+<table id="table_field_configuration">
     <thead>
     <tr>
-        <th>Code</th>
         <th>Name</th>
+        <th>Type</th>
         <th>Description</th>
     </tr>
     </thead>
