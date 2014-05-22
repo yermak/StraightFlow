@@ -16,6 +16,8 @@ public class FieldConfiguration {
 
     private String name;
 
+    private String description;
+
     private List<Comment> comments;
 
     private List<Field> fields = new ArrayList<Field>();
@@ -38,5 +40,17 @@ public class FieldConfiguration {
 
     public void addField(Field field) {
         fields.add(field);
+    }
+
+    public List<Field> getFields() {
+        return fields;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

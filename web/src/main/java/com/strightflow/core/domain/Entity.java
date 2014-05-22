@@ -23,8 +23,6 @@ public class Entity {
 
     private Integer version;
 
-
-
     private List<Comment> comments;
 
     public String getId() {

@@ -25,6 +25,7 @@ public class MongoFieldConfigurationRepositoryTest {
     public void testCreate() {
         FieldConfiguration configuration = new FieldConfiguration();
         configuration.setName("My Conf");
+        configuration.setDescription("123");
 
         Field longField = new Field();
         longField.setType(FieldType.LONG);

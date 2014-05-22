@@ -1,5 +1,7 @@
 package com.strightflow.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +11,8 @@ import java.util.List;
 public interface FieldType<T> {
 
     T convert(Object value);
+
+    String getType();
 
     static final FieldType STRING = new FieldTypeString();
     static final FieldType LONG = new FieldTypeLong();
@@ -22,6 +26,12 @@ public interface FieldType<T> {
         public String convert(Object value) {
             return (String) value;
         }
+
+        @Override
+        @JsonValue
+        public String getType() {
+            return String.class.getTypeName();
+        }
     }
 
     static class FieldTypeLong implements FieldType<Long> {
@@ -29,6 +39,12 @@ public interface FieldType<T> {
         @Override
         public Long convert(Object value) {
             return new Long(value.toString());
+        }
+
+        @Override
+        @JsonValue
+        public String getType() {
+            return Long.class.getTypeName();
         }
     }
 
@@ -38,6 +54,13 @@ public interface FieldType<T> {
         public Double convert(Object value) {
             return new Double(value.toString());
         }
+
+        @Override
+        @JsonValue
+        public String getType() {
+            return Double.class.getTypeName();
+        }
+
     }
 
     static class FieldTypeDate implements FieldType<Date> {
@@ -46,6 +69,13 @@ public interface FieldType<T> {
         public Date convert(Object value) {
             return new Date((String) value);
         }
+
+
+        @Override
+        @JsonValue
+        public String getType() {
+            return Date.class.getTypeName();
+        }
     }
 
     static class FieldTypeList implements FieldType<List> {
@@ -53,6 +83,12 @@ public interface FieldType<T> {
         @Override
         public List convert(Object value) {
             return null;
+        }
+
+        @Override
+        @JsonValue
+        public String getType() {
+            return List.class.getTypeName();
         }
     }
 

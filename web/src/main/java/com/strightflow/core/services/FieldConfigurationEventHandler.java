@@ -25,10 +25,11 @@ public class FieldConfigurationEventHandler implements FieldConfigurationService
     @Override
     public ListedFieldConfigurationEvent requestAll(ListFieldConfigurationEvent listFieldConfigurationEvent) {
         List<FieldConfiguration> fieldConfigurations = repository.findAll();
-        List<FieldConfigurationInfo> fieldConfigurationInfos = new ArrayList<FieldConfigurationInfo>();
+        List<FieldConfigurationInfo> fieldConfigurationInfos = new ArrayList<>();
         for (FieldConfiguration fieldConfiguration : fieldConfigurations) {
             FieldConfigurationInfo fieldConfigurationInfo = new FieldConfigurationInfo();
             BeanUtils.copyProperties(fieldConfiguration, fieldConfigurationInfo);
+            fieldConfigurationInfo.setFields(fieldConfiguration.getFields());
             fieldConfigurationInfos.add(fieldConfigurationInfo);
         }
         return new ListedFieldConfigurationEvent(fieldConfigurationInfos);

@@ -19,9 +19,10 @@ public class Hierarchy {
 
     private static class Node {
         private List<Entity> children;
+        private List<Comment> comments;
     }
 
     @DBRef
-    private Namespace namespace;
+    private List<Namespace> namespaces;
 
 }
