@@ -1,5 +1,7 @@
 package com.strightflow.rest.controller;
 
+import com.strightflow.core.events.fieldconfiguration.ListFieldConfigurationEvent;
+import com.strightflow.core.events.fieldconfiguration.ListedFieldConfigurationEvent;
 import com.strightflow.core.events.namespace.ListNamespaceEvent;
 import com.strightflow.core.services.FieldConfigurationService;
 import org.slf4j.Logger;
@@ -30,9 +32,9 @@ public class FieldConfigurationCommandsController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List> list() {
-        FieldConfigurationListedEvent event = fieldConfigurationService.requestAll(new ListNamespaceEvent());
+        ListedFieldConfigurationEvent event = fieldConfigurationService.requestAll(new ListFieldConfigurationEvent());
 
-        return new ResponseEntity<List>(event.getNamespaceInfos(), HttpStatus.OK);
+        return new ResponseEntity<List>(event.getFieldConfigurationInfos(), HttpStatus.OK);
     }
 
 }

@@ -1,10 +1,10 @@
 package com.strightflow.core.events.entity;
 
 
-import com.strightflow.core.events.RequestReadEvent;
+import com.strightflow.core.events.LoadEvent;
 
 /**
  * Created by yermak on 29/4/14.
  */
-public class RequestEntityDetailsEvent extends RequestReadEvent {
+public class RequestEntityDetailsEvent extends LoadEvent {
 }

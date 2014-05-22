@@ -48,7 +48,7 @@ public class NamespaceCommandsController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List> list() {
-        NamespaceListedEvent event = namespaceService.requestAll(new ListNamespaceEvent());
+        ListedNamespaceEvent event = namespaceService.requestAll(new ListNamespaceEvent());
 
 
 //        HttpHeaders headers = new HttpHeaders();
@@ -78,7 +78,7 @@ public class NamespaceCommandsController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public @ResponseBody NamespaceInfo load(@PathVariable String id) {
-        NamespaceLoadedEvent loadedEvent = namespaceService.requestDetails(new LoadNamespaceEvent(id));
+        LoadedNamespaceEvent loadedEvent = namespaceService.requestDetails(new LoadNamespaceEvent(id));
         NamespaceInfo namespace = loadedEvent.getInfo();
         System.out.println("namespace = " + namespace);
         return namespace;

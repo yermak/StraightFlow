@@ -1,6 +1,6 @@
 package com.strightflow.core.events;
 
-public class ReadEvent {
+public class LoadedEvent {
     protected boolean entityFound = true;
 
     public boolean isEntityFound() {
