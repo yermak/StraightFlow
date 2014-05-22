@@ -1,6 +1,6 @@
 package com.strightflow.core.services;
 
-import com.strightflow.core.events.*;
+import com.strightflow.core.events.ListEvent;
 import com.strightflow.core.events.namespace.*;
 
 /**

@@ -1,6 +1,7 @@
 package com.strightflow.rest.controller;
 
-import com.strightflow.core.events.*;
+import com.strightflow.core.events.CreatedEvent;
+import com.strightflow.core.events.DeletedEvent;
 import com.strightflow.core.events.namespace.*;
 import com.strightflow.core.services.NamespaceService;
 import com.strightflow.rest.domain.NamespaceInfo;

@@ -1,7 +1,7 @@
 package com.strightflow.core.services;
 
 import com.strightflow.core.domain.Namespace;
-import com.strightflow.core.events.*;
+import com.strightflow.core.events.ListEvent;
 import com.strightflow.core.events.namespace.*;
 import com.strightflow.core.repository.NamespaceRepository;
 import com.strightflow.rest.domain.NamespaceInfo;

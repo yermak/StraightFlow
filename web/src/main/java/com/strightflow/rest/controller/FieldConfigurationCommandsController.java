@@ -2,7 +2,6 @@ package com.strightflow.rest.controller;
 
 import com.strightflow.core.events.fieldconfiguration.ListFieldConfigurationEvent;
 import com.strightflow.core.events.fieldconfiguration.ListedFieldConfigurationEvent;
-import com.strightflow.core.events.namespace.ListNamespaceEvent;
 import com.strightflow.core.services.FieldConfigurationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
