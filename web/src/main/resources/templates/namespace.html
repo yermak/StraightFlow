@@ -3,9 +3,17 @@
 <head>
     <title th:text="${name}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui-1.10.4.custom.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables-1.10.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/dataTables.jqueryui-1.10.css"/>
+
     <script src="/js/jquery-2.1.0.js"/>
+    <script src="/js/jquery-ui-1.10.4.custom.js"/>
+
     <script src="/js/jquery.dataTables-1.10.0.js"/>
-    <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css"/>
+    <script src="/js/dataTables.jqueryui-1.10.js"/>
+    <script src="/js/jquery.dform-1.1.0.js"/>
 
     <script language="JavaScript">
     $(document).ready(function() {
@@ -19,14 +27,70 @@
             { "data": "code" },
             { "data": "name" },
             { "data": "description" }
+        ],
+        "columnDefs": [
+            {
+                "render": function ( data, type, row ) {
+                    return '<a href="#" onclick="editDialog('+data+');">'+data+'</a>';
+                },
+                "targets": 0
+            }
+
         ]
     } );
     } );
+
+    function editDialog(code){
+//        $( "#editNamespaceDialog" ).dialog();
+
+//        $("#editNamespaceForm).dform('/rest/namespace/edit', function(data) {
+//          this //-> Generated $('#myform')
+//          data //-> data from path/to/form.json
+//        });
+
+
+        $("#editNamespaceForm").dform({
+            "action" : "index.html",
+            "method" : "get",
+            "dialog" :
+            {
+                "title" : "Edit Namespace",
+            },
+            "html" :
+            [
+                {
+                    "type" : "p",
+                    "html" : "You must login"
+                },
+                {
+                    "name" : "username",
+                    "id" : "txt-username",
+                    "caption" : "Username",
+                    "type" : "text",
+                    "placeholder" : "E.g. user@example.com"
+                },
+                {
+                    "name" : "password",
+                    "caption" : "Password",
+                    "type" : "password"
+                },
+                {
+                    "type" : "p",
+                    "html" : ""
+                },
+                {
+                    "type" : "submit",
+                    "value" : "Login"
+                }
+             ]
+
+        });
+    }
     </script>
 </head>
 <body>
 <p th:text="'Page:' + ${name} + '!'" />
-<table id="table_namespace">
+<table id="table_namespace" class="display">
     <thead>
     <tr>
         <th>Code</th>
@@ -38,5 +102,9 @@
 
     </tbody>
 </table>
+<div id="editNamespaceDialog" title="Edit Namespace">
+    <form id="editNamespaceForm" class="ui-widget"></form>
+</div>
+
 </body>
 </html>
