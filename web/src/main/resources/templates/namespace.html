@@ -14,90 +14,12 @@
     <script src="/js/jquery.dataTables-1.10.0.js"/>
     <script src="/js/dataTables.jqueryui-1.10.js"/>
     <script src="/js/jquery.dform-1.1.0.js"/>
-
-    <script language="JavaScript">
-    $(document).ready(function() {
-    $('#table_namespace').dataTable( {
-        "ajax": {
-            "url":"/rest/namespace",
-            "dataSrc": "",
-            "type": "GET"
-        },
-        "columns": [
-            { "data": "code" },
-            { "data": "name" },
-            { "data": "description" }
-        ],
-        "columnDefs": [
-            {
-                "render": function ( data, type, row ) {
-                    return '<a href="#" onclick="editDialog('+data+');">'+data+'</a>';
-                },
-                "targets": 0
-            }
-
-        ]
-    } );
-    } );
-
-    function editDialog(code){
-//        $( "#editNamespaceDialog" ).dialog();
-
-//        $("#editNamespaceForm).dform('/rest/namespace/edit', function(data) {
-//          this //-> Generated $('#myform')
-//          data //-> data from path/to/form.json
-//        });
-
-
-        $("#editNamespaceForm").dform({
-            "action" : "index.html",
-            "method" : "get",
-            "dialog" :
-            {
-                "title" : "Edit Namespace",
-            },
-            "html" :
-            [
-                {
-                    "type" : "p",
-                    "html" : "You must login"
-                },
-                {
-                    "name" : "username",
-                    "id" : "txt-username",
-                    "caption" : "Username",
-                    "type" : "text",
-                    "placeholder" : "E.g. user@example.com"
-                },
-                {
-                    "name" : "password",
-                    "caption" : "Password",
-                    "type" : "password"
-                },
-                {
-                    "type" : "p",
-                    "html" : ""
-                },
-                {
-                    "type" : "submit",
-                    "value" : "Login"
-                }
-             ]
-
-        });
-    }
-    </script>
+    <script src="/js/namespace.js"/>
 </head>
 <body>
 <p th:text="'Page:' + ${name} + '!'" />
 <table id="table_namespace" class="display">
-    <thead>
-    <tr>
-        <th>Code</th>
-        <th>Name</th>
-        <th>Description</th>
-    </tr>
-    </thead>
+    <thead><tr><th>Code</th><th>Name</th><th>Description</th></tr></thead>
     <tbody>
 
     </tbody>

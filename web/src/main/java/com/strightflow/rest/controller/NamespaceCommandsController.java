@@ -1,5 +1,6 @@
 package com.strightflow.rest.controller;
 
+import com.strightflow.core.dform.*;
 import com.strightflow.core.events.CreatedEvent;
 import com.strightflow.core.events.DeletedEvent;
 import com.strightflow.core.events.namespace.*;
@@ -15,7 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yermak on 29/4/14.
@@ -78,11 +82,66 @@ public class NamespaceCommandsController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public @ResponseBody NamespaceInfo load(@PathVariable String id) {
+    public
+    @ResponseBody
+    NamespaceInfo load(@PathVariable String id) {
         LoadedNamespaceEvent loadedEvent = namespaceService.requestDetails(new LoadNamespaceEvent(id));
         NamespaceInfo namespace = loadedEvent.getInfo();
         System.out.println("namespace = " + namespace);
         return namespace;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
+    public
+    @ResponseBody
+    Map edit(@PathVariable String id) {
+        LoadedNamespaceEvent loadedEvent = namespaceService.requestDetails(new LoadNamespaceEvent(id));
+        NamespaceInfo namespace = loadedEvent.getInfo();
+
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("action", "");
+        result.put("method", "post");
+        result.put("dialog", new HashMap<String, String>() {
+            {
+                put("modal", "true");
+                put("minHeight", "400");
+                put("minWidth", "600");
+                put("title", namespace.getCode());
+            }
+        });
+        Form form = new Form();
+        form.add(new Tag("p", "Modify namespace information"));
+
+        Text namespaceNameText = new Text();
+        namespaceNameText.setId("namespaceNameText");
+        namespaceNameText.setName("namespaceNameText");
+        namespaceNameText.setCaption("Name:");
+        namespaceNameText.setValue(namespace.getName());
+        form.add(namespaceNameText);
+        form.add(new Tag("br"));
+
+        TextArea namespaceDescriptionArea = new TextArea();
+        namespaceDescriptionArea.setId("namespaceDescriptionArea");
+        namespaceDescriptionArea.setName("namespaceDescriptionArea");
+        namespaceDescriptionArea.setCaption("Description");
+        namespaceDescriptionArea.setHtml(namespace.getDescription());
+        form.add(namespaceDescriptionArea);
+        form.add(new Tag("br"));
+
+        Hidden namespaceId = new Hidden();
+        namespaceId.setId("namespaceId");
+        namespaceId.setName("namespaceId");
+        namespaceId.setValue(namespace.getId());
+        form.add(namespaceId);
+
+        Submit submit = new Submit();
+        submit.setId("namespaceSubmit");
+        submit.setValue("Save");
+        form.add(submit);
+
+
+        result.put("html", form.getFormElements());
+        return result;
     }
 
 }
