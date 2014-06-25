@@ -14,9 +14,7 @@ $('#table_namespace').dataTable( {
     "columnDefs": [
         {
             "render": function ( data, type, row ) {
-                result = '<a href="#" onclick="editDialog('+row.id+')">'+data+'</a>';
-                alert(result);
-                return result;
+                return  '<a href="#" onclick="editDialog(\''+row.id+'\')">'+data+'</a>';
             },
             "targets": 0
         },
@@ -27,6 +25,6 @@ $('#table_namespace').dataTable( {
 } );
 
 function editDialog(id){
-    alert(id);
+    $("#editNamespaceForm").dform()
     $("#editNamespaceForm").dform('/rest/namespace/edit/'+id);
 }
