@@ -4,17 +4,15 @@
     <title th:text="${name}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="/css/jquery-ui-1.10.4.custom.css"/>
-
     <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables-1.10.css"/>
     <link rel="stylesheet" type="text/css" href="/css/dataTables.jqueryui-1.10.css"/>
 
     <script src="/js/jquery-2.1.0.js"/>
     <script src="/js/jquery-ui-1.10.4.custom.js"/>
-
     <script src="/js/jquery.dataTables-1.10.0.js"/>
     <script src="/js/dataTables.jqueryui-1.10.js"/>
     <script src="/js/jquery.dform-1.1.0.js"/>
-    <script src="/js/namespace.js"/>
+    <script src="/js/sf-namespace.js"/>
 </head>
 <body>
 <p th:text="'Page:' + ${name} + '!'" />
@@ -24,9 +22,7 @@
 
     </tbody>
 </table>
-<div id="editNamespaceDialog" title="Edit Namespace">
-    <form id="editNamespaceForm" class="ui-widget"></form>
-</div>
+<form id="editNamespaceForm" class="ui-widget"></form>
 
 </body>
 </html>

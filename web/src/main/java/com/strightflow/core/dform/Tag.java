@@ -23,4 +23,5 @@ public class Tag extends FormElement {
     public String getType() {
         return attributes.get("type");
     }
+
 }

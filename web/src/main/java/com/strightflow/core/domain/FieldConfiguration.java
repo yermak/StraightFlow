@@ -18,7 +18,7 @@ public class FieldConfiguration {
 
     private String description;
 
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();
 
     private List<Field> fields = new ArrayList<Field>();
 

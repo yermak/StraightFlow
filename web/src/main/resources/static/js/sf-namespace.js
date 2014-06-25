@@ -25,6 +25,5 @@ $('#table_namespace').dataTable( {
 } );
 
 function editDialog(id){
-    $("#editNamespaceForm").dform()
     $("#editNamespaceForm").dform('/rest/namespace/edit/'+id);
 }

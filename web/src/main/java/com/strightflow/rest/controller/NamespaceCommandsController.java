@@ -27,7 +27,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/rest/namespace")
-public class NamespaceCommandsController {
+public class NamespaceCommandsController extends WebController {
 
     private static Logger LOG = LoggerFactory.getLogger(NamespaceCommandsController.class);
 
@@ -98,50 +98,24 @@ public class NamespaceCommandsController {
         LoadedNamespaceEvent loadedEvent = namespaceService.requestDetails(new LoadNamespaceEvent(id));
         NamespaceInfo namespace = loadedEvent.getInfo();
 
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("action", "");
-        result.put("method", "post");
-        result.put("dialog", new HashMap<String, String>() {
-            {
-                put("modal", "true");
-                put("minHeight", "400");
-                put("minWidth", "600");
-                put("title", namespace.getCode());
-            }
-        });
-        Form form = new Form();
+        Form form = createDForm(namespace.getCode());
         form.add(new Tag("p", "Modify namespace information"));
 
-        Text namespaceNameText = new Text();
-        namespaceNameText.setId("namespaceNameText");
-        namespaceNameText.setName("namespaceNameText");
-        namespaceNameText.setCaption("Name:");
-        namespaceNameText.setValue(namespace.getName());
+        Text namespaceNameText = new Text("namespaceNameTextId", "namespaceNameText", "Name", namespace.getName());
         form.add(namespaceNameText);
         form.add(new Tag("br"));
 
-        TextArea namespaceDescriptionArea = new TextArea();
-        namespaceDescriptionArea.setId("namespaceDescriptionArea");
-        namespaceDescriptionArea.setName("namespaceDescriptionArea");
-        namespaceDescriptionArea.setCaption("Description");
-        namespaceDescriptionArea.setHtml(namespace.getDescription());
+        TextArea namespaceDescriptionArea = new TextArea("namespaceDescriptionAreaId", "namespaceDescriptionArea", "Description", namespace.getDescription());
         form.add(namespaceDescriptionArea);
         form.add(new Tag("br"));
 
-        Hidden namespaceId = new Hidden();
-        namespaceId.setId("namespaceId");
-        namespaceId.setName("namespaceId");
-        namespaceId.setValue(namespace.getId());
+        Hidden namespaceId = new Hidden("namespaceIdId", "namespaceId", namespace.getId());
         form.add(namespaceId);
 
-        Submit submit = new Submit();
-        submit.setId("namespaceSubmit");
-        submit.setValue("Save");
+        Submit submit = new Submit("namespaceSubmitId", "namespaceSubmit", "Save");
         form.add(submit);
 
-
-        result.put("html", form.getFormElements());
-        return result;
+        return form.getParameters();
     }
 
 }

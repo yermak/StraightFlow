@@ -7,6 +7,15 @@ public class TextArea extends FormElement{
     private String name;
     private String html;
     private String caption;
+    private String id;
+
+
+    public TextArea(String id, String name, String caption, String value) {
+        this.id = id;
+        this.name = name;
+        this.caption = caption;
+        this.html = value;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -34,5 +43,13 @@ public class TextArea extends FormElement{
 
     public String getCaption() {
         return caption;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 }

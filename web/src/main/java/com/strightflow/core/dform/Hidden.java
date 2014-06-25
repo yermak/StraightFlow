@@ -6,6 +6,13 @@ package com.strightflow.core.dform;
 public class Hidden extends FormElement {
     private String value;
     private String name;
+    private String id;
+
+    public Hidden(String id, String name, String value) {
+        this.id = id;
+        this.name = name;
+        this.value = value;
+    }
 
     public void setValue(String value) {
         this.value = value;
@@ -26,5 +33,13 @@ public class Hidden extends FormElement {
     @Override
     public String getType() {
         return "hidden";
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 }

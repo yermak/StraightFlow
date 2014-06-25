@@ -3,6 +3,8 @@ package com.strightflow.core.services;
 import com.strightflow.core.domain.FieldConfiguration;
 import com.strightflow.core.events.fieldconfiguration.ListFieldConfigurationEvent;
 import com.strightflow.core.events.fieldconfiguration.ListedFieldConfigurationEvent;
+import com.strightflow.core.events.fieldconfiguration.LoadFieldConfigurationEvent;
+import com.strightflow.core.events.fieldconfiguration.LoadedFieldConfigurationEvent;
 import com.strightflow.core.repository.FieldConfigurationRepository;
 import com.strightflow.rest.domain.FieldConfigurationInfo;
 import org.springframework.beans.BeanUtils;
@@ -23,7 +25,7 @@ public class FieldConfigurationEventHandler implements FieldConfigurationService
     private FieldConfigurationRepository repository;
 
     @Override
-    public ListedFieldConfigurationEvent requestAll(ListFieldConfigurationEvent listFieldConfigurationEvent) {
+    public ListedFieldConfigurationEvent list(ListFieldConfigurationEvent listFieldConfigurationEvent) {
         List<FieldConfiguration> fieldConfigurations = repository.findAll();
         List<FieldConfigurationInfo> fieldConfigurationInfos = new ArrayList<>();
         for (FieldConfiguration fieldConfiguration : fieldConfigurations) {
@@ -33,5 +35,13 @@ public class FieldConfigurationEventHandler implements FieldConfigurationService
             fieldConfigurationInfos.add(fieldConfigurationInfo);
         }
         return new ListedFieldConfigurationEvent(fieldConfigurationInfos);
+    }
+
+    @Override
+    public LoadedFieldConfigurationEvent load(LoadFieldConfigurationEvent event) {
+        FieldConfiguration fieldConfiguration = repository.findById(event.getFieldConfigurationId());
+        FieldConfigurationInfo fieldConfigurationInfo = new FieldConfigurationInfo();
+        BeanUtils.copyProperties(fieldConfiguration, fieldConfigurationInfo);
+        return new LoadedFieldConfigurationEvent(fieldConfigurationInfo);
     }
 }
