@@ -1,2 +1,2 @@
-StrightFlow
+StraightFlow
 ===========
