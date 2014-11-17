@@ -1,10 +1,7 @@
 package com.strightflow.core.services;
 
 import com.strightflow.core.domain.FieldConfiguration;
-import com.strightflow.core.events.fieldconfiguration.ListFieldConfigurationEvent;
-import com.strightflow.core.events.fieldconfiguration.ListedFieldConfigurationEvent;
-import com.strightflow.core.events.fieldconfiguration.LoadFieldConfigurationEvent;
-import com.strightflow.core.events.fieldconfiguration.LoadedFieldConfigurationEvent;
+import com.strightflow.core.events.fieldconfiguration.*;
 import com.strightflow.core.repository.FieldConfigurationRepository;
 import com.strightflow.rest.domain.FieldConfigurationInfo;
 import org.springframework.beans.BeanUtils;
@@ -44,4 +41,13 @@ public class FieldConfigurationEventHandler implements FieldConfigurationService
         BeanUtils.copyProperties(fieldConfiguration, fieldConfigurationInfo);
         return new LoadedFieldConfigurationEvent(fieldConfigurationInfo);
     }
+
+    @Override
+    public DeletedFieldConfigurationEvent delete(DeleteFieldConfigurationEvent event) {
+        FieldConfiguration fieldConfiguration = repository.findById(event.getFieldConfigurationId());
+        repository.delete(fieldConfiguration);
+        return new DeletedFieldConfigurationEvent(event.getFieldConfigurationId());
+    }
 }
+
+

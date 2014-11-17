@@ -1,15 +1,13 @@
 package com.strightflow.rest.controller;
 
 import com.strightflow.core.dform.*;
-import com.strightflow.core.events.fieldconfiguration.ListFieldConfigurationEvent;
-import com.strightflow.core.events.fieldconfiguration.ListedFieldConfigurationEvent;
-import com.strightflow.core.events.fieldconfiguration.LoadFieldConfigurationEvent;
-import com.strightflow.core.events.fieldconfiguration.LoadedFieldConfigurationEvent;
+import com.strightflow.core.events.fieldconfiguration.*;
 import com.strightflow.core.services.FieldConfigurationService;
 import com.strightflow.rest.domain.FieldConfigurationInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
@@ -68,5 +69,21 @@ public class FieldConfigurationCommandsController extends WebController {
         return form.getParameters();
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
+    public @ResponseBody
+    ResponseEntity<DeletedFieldConfigurationEvent> delete(@PathVariable String id) {
+        DeletedFieldConfigurationEvent event = fieldConfigurationService.delete(new DeleteFieldConfigurationEvent(id));
 
+        HttpHeaders headers = new HttpHeaders();
+        try {
+            headers.setLocation(new URI("/field_configuration").toURL().toURI());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<DeletedFieldConfigurationEvent>(event, headers, HttpStatus.TEMPORARY_REDIRECT);
+
+
+    }
 }
